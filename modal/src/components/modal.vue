@@ -1,9 +1,8 @@
 <template>
   <!-- Button trigger modal -->
   <div @click="modalShow">
-  <slot name='modal-btn'>
-      <button type="button" class="btn btn-primary">
-          open a modal
+  <slot>
+      <button type="button" class="btn btn-primary"> 
       </button>
   </slot>
   </div>
@@ -22,11 +21,9 @@
             content
           </slot>
       </div>
-      <div class="modal-footer">
-          <slot name='modal-footer'>   
-              <button type="button" class="btn btn-default" @click="modalCancel">取消</button>
-              <button type="button" class="btn btn-primary" @click="modalSure">确定</button>
-          </slot>
+      <div class="modal-footer" v-show="hasFooter">
+          <button type="button" class="btn btn-default" @click="modalCancel">{{ cancelText }}</button>
+          <button type="button" class="btn btn-primary" @click="modalSure">{{ sureText }}</button>
       </div>
     </div>
   </div>
@@ -45,6 +42,24 @@ export default {
       type: String,
       default(){
         return 'modal title'
+      }
+    },
+    cancelText: {
+      type: String,
+      default(){
+        return '取消'
+      }
+    },
+    successText: {
+      type: String,
+      default(){
+        return '确定'
+      }
+    },
+    hasFooter: {
+      type: Boolean,
+      default(){
+        return true
       }
     },
     onCancel: {
