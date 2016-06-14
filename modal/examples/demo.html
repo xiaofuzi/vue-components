@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vue bootstrap modal component.</title>
+	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+</head>
+<body>
+	<div id="app" class="container">
+		<bootstrap-modal
+			:title='title'
+			:on-cancel='onCancel'
+			:on-success='onSuccess'
+		>
+			<div slot="modal-body">
+				百度外卖商业智能营销部。
+			</div>
+		</bootstrap-modal>
+	</div>
+	<script src="http://cdn.bootcss.com/vue/1.0.24/vue.min.js"></script>
+	<script src='../dist/bootstrap-modal.js'></script>
+	<script src='../dist/app.js'></script>
+</body>
+</html>

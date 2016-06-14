@@ -1,8 +1,4 @@
-## a vue pagination components
-
-## dependence
-
-* bootstrap.css
+## a vue bootstrap modal components
 
 ## how to build?
 

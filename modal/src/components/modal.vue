@@ -1,0 +1,99 @@
+<template>
+  <!-- Button trigger modal -->
+  <div @click="modalShow">
+  <slot name='modal-btn'>
+      <button type="button" class="btn btn-primary">
+          open a modal
+      </button>
+  </slot>
+  </div>
+
+
+<!-- Modal -->
+<div @click.self='modalHide' class="modal fade" v-bind:class="{'out': !showState, 'in': showState}" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close"  @click="modalHide"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">{{title}}</h4>
+        </div>
+        <div class="modal-body">
+          <slot name='modal-body'>
+            content
+          </slot>
+      </div>
+      <div class="modal-footer">
+          <slot name='modal-footer'>   
+              <button type="button" class="btn btn-default" @click="modalCancel">取消</button>
+              <button type="button" class="btn btn-primary" @click="modalSure">确定</button>
+          </slot>
+      </div>
+    </div>
+  </div>
+</div>
+</template>
+
+<script>
+export default {
+  data () {
+    return {
+        showState: false
+      }
+  },
+  props: {
+    title: {
+      type: String,
+      default(){
+        return 'modal title'
+      }
+    },
+    onCancel: {
+      type: Function
+    },
+    onSuccess: {
+      type: Function
+    }
+  },
+  watch: {
+    
+  },
+  computed: {
+    
+  },
+  methods: {
+    modalShow(){
+      this.showState = true
+    },
+    modalHide(){
+      this.showState = false
+    },
+    modalCancel(){
+      this.modalHide()
+      this.onCancel()
+    },
+    modalSure(){
+      this.modalHide()
+      this.onSuccess()
+    }
+  },
+  ready(){
+  }
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+input, button, textarea{
+  outline: none;
+}
+  .in{
+    display: block;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: rgba(0, 0, 0, .5);
+  }
+
+  .out{
+    display: none;
+  }
+</style>
